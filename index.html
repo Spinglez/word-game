@@ -25,12 +25,17 @@
 
     <article class="mt-5 pb-4 container">
       <div class="row gameBox ">
-        <h2 class="col">Lets play hangman, music style</h2>
-
+        <div class="col">
+        <h2>Lets play hangman, music style</h2>
+          <button type="button" name="startbutton" class="btn">Start</button>
+        </div>
         <div class="col-4 wordGame">
           <div class="row score">
             <h3>here's how you're doing</h3>
             <div id="scoreBox">
+              <div id="guessLeft">
+
+              </div>
 
             </div>
 
@@ -46,7 +51,7 @@
 
             <ul>
               <li>View your image and listen to the song</li>
-              <li>Count how large the word is look for the "_" (underscore)</li>
+              <li>You have five guesses! Your see your remaining after your first guess!</li>
               <li>Press a key to guess a letter!</li>
               <li>if you're wrong then it'll tell you</li>
               <li>if not it will go on the line!</li>
@@ -69,7 +74,7 @@
         </p>
       </div>
       <div class="row copyright">
-        <p>
+        <p class="text-center">
           Code is copyright of Christian Cabrera
         </p>
       </div>

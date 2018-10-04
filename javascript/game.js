@@ -23,29 +23,63 @@
   let word6 = "A light tes"
   let word7 = "randomch"
 
-
 // array of available choices
   var words = [word1, word2, word3, word4, word5, word6, word7];
 // end arrray
+  let guessLeft = 5;
 
 // pulling a random word from the array above
   var word = words[Math.floor(Math.random() * words.length)];
 
-  var targetDiv1 = document.getElementById('gameDiv');
-  var targetDiv2 = document.getElementById('scoreBox')
-// making the chosen word from the random choice above display as _ (underscores)
+// Targets for gameBox
+  var targetDiv1 = document.getElementById("gameDiv");
+  var targetDiv2 = document.getElementById("scoreBox");
+
+// Giving a count ofthe word length to the user
+  var letters = word.length + " Letters in the word";
+
+// drawing the _ for each words
   var answerArray = [];
   for (var i = 0; i < word.length; i++){
     answerArray[i] = " _";
-    // targetDiv.appendChild(answerArray[i]);
-    // console.log(answerArray[i]);
   }
   gameDiv.innerHTML = answerArray;
 
-  for (var j = 0; i < word.length; i++){
-    targetdiv2.a
-  }
+  scoreBox.innerHTML = letters;
 
+while (letters > 0) {
+
+  document.onkeyup = function(playerGuess){
+    for (var j = 0; j < word.length; j++){
+      if (word[j] === playerGuess){
+        answerArray[j] = playerGuess;
+        answerArray.join();
+        letters--;
+        }
+      }
+    }
+
+}
+    console.log(answerArray);
+    console.log(word);
+
+    // else {
+    //   guessLeft - 1;
+    // if (typeof playerGuess == number) {
+    //   alert("Guess a letter or a space!")
+    // }
+  // }
+
+// making the chosen word from the random choice above display as _ (underscores)
+
+// include the onclick into the this array for entering in the words
+
+
+
+
+
+
+     // playerGuess.word[i].join();
   //
   // for (i = 0; i < answerArray.length; i++){
   //   var newDiv = document.createElement("div");
@@ -63,20 +97,3 @@
   // var displayDiv getElementById('gameDiv');
   //
   //   displayDiv.textContent = answerArray.join(" ");
-
-// begin objects for array (now thinking objects is too much)
-  //
-  // var word1 {
-  //   word: "we rise",
-  //   length: 7,
-  // }
-  //
-  // var word2 {
-  //   word: "show me",
-  //   length: 7,
-  // }
-  //
-  // var word3 {
-  //   word: "voices in my head",
-  //   length: 17,
-  // }
