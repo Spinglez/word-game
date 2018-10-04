@@ -13,6 +13,7 @@
 //  display progress (number of guesses remaining and correct amount guessed)
 //
 
+document.getElementById("start").onclick = gametime;
 
 // defining words available
   let word1 = "we rise";
@@ -28,6 +29,8 @@
 // end arrray
   let guessLeft = 5;
 
+  let guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
+
 // pulling a random word from the array above
   var word = words[Math.floor(Math.random() * words.length)];
 
@@ -36,7 +39,7 @@
   var targetDiv2 = document.getElementById("scoreBox");
 
 // Giving a count ofthe word length to the user
-  var letters = word.length + " Letters in the word";
+  var letters = word.length;
 
 // drawing the _ for each words
   var answerArray = [];
@@ -47,22 +50,20 @@
 
   scoreBox.innerHTML = letters;
 
-while (letters > 0) {
 
-  document.onkeyup = function(playerGuess){
-    for (var j = 0; j < word.length; j++){
+  document.onkeyup = function(event){
+    let playerGuess = event.key;
+    for (j = 0; j < word.length; j++){
       if (word[j] === playerGuess){
         answerArray[j] = playerGuess;
-        answerArray.join();
         letters--;
         }
       }
     }
 
-}
+
     console.log(answerArray);
     console.log(word);
-
     // else {
     //   guessLeft - 1;
     // if (typeof playerGuess == number) {
@@ -75,8 +76,17 @@ while (letters > 0) {
 // include the onclick into the this array for entering in the words
 
 
-
-
+// Original semi working on onkeyup
+// document.onkeyup = function(playerGuess){
+//   for (var j = 0; j < word.length; j++){
+//     if (word[j] === playerGuess){
+//       answerArray[j] = playerGuess;
+//       answerArray.join();
+//       letters--;
+//       }
+//     }
+//   }
+// }
 
 
      // playerGuess.word[i].join();
