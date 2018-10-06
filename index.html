@@ -27,21 +27,22 @@
       <div class="row gameBox ">
         <div class="col">
         <h2>Lets play hangman, music style</h2>
-          <button type="button" name="startbutton" class="btn" id="start">Start</button>
+          <button type="button" name="startbutton" class="btn btn-danger" id="start">Start</button>
         </div>
         <div class="col-4 wordGame">
           <div class="row score">
             <h3>here's how you're doing</h3>
             <div  id="scoreBox">
               <div class="col-12">
-                <span>Letters left:</span>
+                <div> Wins:
+                <span id="winNum"></span>
+                </div>
+                <div>Letters left:
                 <span id="score"></span>
+                </div>
                 <div>Guesses left:
                 <span id="guesses"></span>
                 </div>
-              </div>
-              <div class="" id="guessLeft">
-
               </div>
 
             </div>
@@ -50,6 +51,9 @@
           <div class="row" id="gameDiv">
 
           </div>
+          <div>Remaining letters:
+          <span id="gletters"></span>
+          </div>
         </div>
 
         <div class="col">
@@ -57,8 +61,8 @@
             <h3 class="text-center">Here are the rules!</h3>
 
             <ul>
-              <li>View your image and listen to the song</li>
-              <li>You have five guesses! Your see your remaining after your first guess!</li>
+              <li>Listen to the song</li>
+              <li>You have five guesses (including the length of the word)! See your remaining after your first guess!</li>
               <li>Press a key to guess a letter!</li>
               <li>if you're wrong then it'll tell you</li>
               <li>if not it will go on the line!</li>
