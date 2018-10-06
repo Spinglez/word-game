@@ -15,55 +15,89 @@
 
 document.getElementById("start").onclick = gametime;
 
-// defining words available
-  let word1 = "we rise";
-  let word2 = "show me";
-  let word3 = "voices in my head";
-  let word4 = "light";
-  let word5 = "byu";
-  let word6 = "A light tes"
-  let word7 = "randomch"
+function gametime(){
 
-// array of available choices
-  var words = [word1, word2, word3, word4, word5, word6, word7];
-// end arrray
-  let guessLeft = 5;
+  // defining words available
+    let word1 = "we rise";
+    let word2 = "show me";
+    let word3 = "voices in my head";
+    let word4 = "light";
+    let word5 = "byu";
+    let word6 = "a light tes"
+    let word7 = "randomch"
 
-  let guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
+  // array of available choices
+    var words = [word1, word2, word3, word4, word5, word6, word7];
+  // end arrray
 
-// pulling a random word from the array above
-  var word = words[Math.floor(Math.random() * words.length)];
+    let guessLeft = 8;
 
-// Targets for gameBox
-  var targetDiv1 = document.getElementById("gameDiv");
-  var targetDiv2 = document.getElementById("scoreBox");
-
-// Giving a count ofthe word length to the user
-  var letters = word.length;
-
-// drawing the _ for each words
-  var answerArray = [];
-  for (var i = 0; i < word.length; i++){
-    answerArray[i] = " _";
-  }
-  gameDiv.innerHTML = answerArray;
-
-  scoreBox.innerHTML = letters;
-
-
-  document.onkeyup = function(event){
-    let playerGuess = event.key;
-    for (j = 0; j < word.length; j++){
-      if (word[j] === playerGuess){
-        answerArray[j] = playerGuess;
-        letters--;
+    function increment(){
+          guessLeft --;
+          return guessLeft;
         }
-      }
+
+    let guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
+
+  // pulling a random word from the array above
+    var word = words[Math.floor(Math.random() * words.length)];
+
+  // Targets for gameBox
+    var targetDiv1 = document.getElementById("gameDiv");
+    var targetDiv2 = document.getElementById("scoreBox");
+
+  // Giving a count ofthe word length to the user
+    var letters = word.length;
+
+  // drawing the _ for each words
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++){
+      answerArray[i] = " _";
     }
+    gameDiv.innerHTML = answerArray;
+    guesses.innerHTML = guessLeft;
+    score.innerHTML = letters;
+
+    // guesses.innerHTML = guessLeft;
+
+    document.onkeyup = function(event){
+      let playerGuess = event.key;
+      for (j = 0; j < word.length; j++){
+        if (word[j] === playerGuess){
+          answerArray[j] = playerGuess;
+          letters --;
+          score.innerHTML = letters;
+          guesses.innerHTML = guessLeft;
+          gameDiv.innerHTML = answerArray;
+          }
+        else if (word[j] !== playerGuess){
+            increment();
+            guesses.innerHTML = guessLeft;
+          }
+          console.log("guess check", guessLeft);
+          if (letters == 0) { //this will watch the letter count then give a prompt to restart the game you can choose not to play as well
+              gameDiv.innerHTML = word;
+              var r  = setTimeout(function() { confirm("Congratulations you win! Play again?");
+              if (r == true){
+                gametime();
+                }
+                else {
+                  return;
+                } }, 550);}
+          }
+
+      }
+
+                console.log(answerArray);
+                console.log(word);
+}
 
 
-    console.log(answerArray);
-    console.log(word);
+
+
+
+
+
     // else {
     //   guessLeft - 1;
     // if (typeof playerGuess == number) {
