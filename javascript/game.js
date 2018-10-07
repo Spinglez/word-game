@@ -14,7 +14,7 @@
 //
 
 // array of available choices
-words = ["we rise", "show me", "voices in me head", "light", "bwu", "lift me from the ground", "i still see your face"]
+words = ["we rise", "show me", "voices in my head", "light", "bwu", "lift me from the ground", "i still see your face"]
   // end arrray
   var guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
   var word = "";
@@ -30,6 +30,7 @@ function wordFinder(){
     return word;
   }
 
+  // drawing the _ for each word
 function arrayDisplay(){
     for (var i = 0; i < word.length; i++){
       answerArray[i] = " _";
@@ -88,12 +89,9 @@ function lose(){
     start(),1;
 }
 
-  // drawing the _ for each words
-
   function clear() {
     document.getElementById("scoreBox").innerHTML = "";
   }
-// function gametime(){
 
 // this should watch for key up from user and update each field depending on conditions
     document.onkeyup = function(event){
