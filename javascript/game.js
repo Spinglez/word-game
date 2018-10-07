@@ -13,63 +13,92 @@
 //  display progress (number of guesses remaining and correct amount guessed)
 //
 
-document.getElementById("start").onclick = gametime();
+// array of available choices
+words = ["we rise", "show me", "voices in me head", "light", "bwu", "lift me from the ground", "i still see your face"]
+  // end arrray
+  var guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
+  var word = "";
+  var wins = 0;
+  var answerArray = [];
+  var wrongGuess = 5;
+  var guessLeft = "";
+  var letters = "";
 
+function wordFinder(){
+    word = words[Math.floor(Math.random() * words.length)];
+    console.log(word);
+    return word;
+  }
 
-function reset(){
-  gameDiv.innerHTML = answerArray;
-  guesses.innerHTML = guessLeft;
-  score.innerHTML = letters;
-  gletters.innerHTML = guess.join(' ');
-}
-
-let wins = 0;
+function arrayDisplay(){
+    for (var i = 0; i < word.length; i++){
+      answerArray[i] = " _";
+      gameDiv.innerHTML = answerArray.join();
+    }
+  }
 
 function increment(){
         wins ++;
         return wins;
     }
+function decrement(){
+     wrongGuess --;
+     return wrongGuess;
+  }
 
+function wordLength(){
+    guessLeft = (word.length + 5);
+    }
 
-function gametime(){
-
-  // defining words available
-    let word1 = "we rise";
-    let word2 = "show me";
-    let word3 = "voices in my head";
-    let word4 = "light";
-    let word5 = "bwu";
-    let word6 = "lift me from the ground"
-    let word7 = "i still see your face"
-
-  // array of available choices
-    var words = [word1, word2, word3, word4, word5, word6, word7];
-  // end arrray
-
+function letterNum(){
+    for (var i = 0; i < word.length; i++) {
+      word[i] = letters;
+      return letters;
+    }
+  }
   // pulling a random word from the array above
-    var word = words[Math.floor(Math.random() * words.length)];
-
-    let guessLeft = (word.length + 5);
-
-    let guess = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
 
   // Giving a count ofthe word length to the user
-    var letters = word.length;
+
+function start(){
+  wordFinder();
+  arrayDisplay();
+  letters = word.length;
+  wordLength();
+  wrong.innerHTML = wrongGuess;
+  winNum.innerHTML = wins;
+  score.innerHTML = letters;
+  gameDiv.innerHTML = answerArray.join('');
+  clear(),1;
+  return;
+}
+
+function win(){
+   clear(),1;
+   completedWord.innerHTML = word;
+   increment(), 1;
+   winNum.innerHTML = wins;
+   alert("Congratulations you win!");
+   start(),1;
+}
+
+function lose(){
+    winNum.innerHTML = wins;
+    clear();
+    alert("you lose!");
+    start(),1;
+}
 
   // drawing the _ for each words
-    var answerArray = [];
-    for (var i = 0; i < word.length; i++){
-      answerArray[i] = " _";
-    }
-    gameDiv.innerHTML = answerArray;
-    guesses.innerHTML = guessLeft;
-    score.innerHTML = letters;
-    gletters.innerHTML = guess.join(' ');
 
-    // guesses.innerHTML = guessLeft;
+  function clear() {
+    document.getElementById("scoreBox").innerHTML = "";
+  }
+// function gametime(){
+
 
     document.onkeyup = function(event){
-      let playerGuess = event.key;
+      var playerGuess = event.key;
       for (j = 0; j < word.length; j++){
         if (word[j] === playerGuess){
           answerArray[j] = playerGuess;
@@ -77,32 +106,21 @@ function gametime(){
           score.innerHTML = letters;
           gameDiv.innerHTML = answerArray.join('');
           }
-          if (letters === 0) { //this will watch the letter count then give a prompt to restart the game you can choose not to play as well
-                 gameDiv.innerHTML = word;
-                 increment();
-                 winNum.innerHTML = wins;
-                 var r  = setTimeout(function() { confirm("Congratulations you win! Play again?");
-                 if (r == true){
-                   gametime();
-                   }
-                   else {
-                     return;
-                   } }, 550);}
-        }
-
         for (var k = 0; k < guess.length; k++) {
           if (guess[k] == playerGuess){
             guess.splice(guess.indexOf(playerGuess), 1);
             gletters.innerHTML = guess.join(' ');
           }
+          else if (letters === 0) {
+            clear();
+            win(),1;
+            return;
         }
       }
+    }
+  }
 
-                console.log(answerArray);
-                console.log(word);
-}
-
-
+document.getElementById("reStart").onclick = start(),1;
 
 
 

@@ -27,21 +27,30 @@
       <div class="row gameBox ">
         <div class="col">
         <h2>Lets play hangman, music style</h2>
-          <button type="button" name="startbutton" class="btn btn-danger" id="start">Start</button>
+          <button type="button" name="startbutton" class="btn btn-danger" id="reStart">re-start!</button>
         </div>
         <div class="col-4 wordGame">
           <div class="row score">
             <h3>here's how you're doing</h3>
-            <div  id="scoreBox">
+            <div>
               <div class="col-12">
                 <div> Wins:
                 <span id="winNum"></span>
+                </div>
+                <div> Wrong guesses left:
+                <span id="wrong"></span>
                 </div>
                 <div>Letters left:
                 <span id="score"></span>
                 </div>
                 <div>Guesses left:
                 <span id="guesses"></span>
+                </div>
+                <div>Completed word:
+                <span id="completedWord"></span>
+                </div>
+                <div>
+                <span id="scoreBox"></span>
                 </div>
               </div>
 
