@@ -20,7 +20,7 @@ words = ["we rise", "show me", "voices in me head", "light", "bwu", "lift me fro
   var word = "";
   var wins = 0;
   var answerArray = [];
-  var wrongGuess = 5;
+  var wrongGuess = "";
   var guessLeft = "";
   var letters = "";
 
@@ -65,7 +65,6 @@ function start(){
   arrayDisplay();
   letters = word.length;
   wordLength();
-  wrong.innerHTML = wrongGuess;
   winNum.innerHTML = wins;
   score.innerHTML = letters;
   gameDiv.innerHTML = answerArray.join('');
@@ -96,9 +95,21 @@ function lose(){
   }
 // function gametime(){
 
-
+// this should watch for key up from user and update each field depending on conditions
     document.onkeyup = function(event){
       var playerGuess = event.key;
+      let wrongGuess = "5";
+      if (playerGuess == gletters.html){
+        return;
+      }
+      for (var k = 0; k < guess.length; k++) {
+        if (guess[k] == playerGuess){
+          wrongGuess --;
+          guess.splice(playerGuess.indexOf(guess), 1);
+          gletters.innerHTML += " " + playerGuess;
+          wrong.innerHTML = wrongGuess;
+        }
+      }
       for (j = 0; j < word.length; j++){
         if (word[j] === playerGuess){
           answerArray[j] = playerGuess;
@@ -106,19 +117,15 @@ function lose(){
           score.innerHTML = letters;
           gameDiv.innerHTML = answerArray.join('');
           }
-        for (var k = 0; k < guess.length; k++) {
-          if (guess[k] == playerGuess){
-            guess.splice(guess.indexOf(playerGuess), 1);
-            gletters.innerHTML = guess.join(' ');
-          }
           else if (letters === 0) {
             clear();
             win(),1;
             return;
         }
+
+        }
       }
-    }
-  }
+
 
 document.getElementById("reStart").onclick = start(),1;
 
