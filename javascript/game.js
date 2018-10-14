@@ -38,25 +38,31 @@ function arrayDisplay(){
     }
   }
 
-function increment(){
-        wins ++;
-        return wins;
-    }
-function decrement(){
-     wrongGuess --;
-     return wrongGuess;
-  }
-
-function wordLength(){
-    guessLeft = (word.length + 5);
-    }
-
 function letterNum(){
-    for (var i = 0; i < word.length; i++) {
-      word[i] = letters;
-      return letters;
-    }
+  for (var i = 0; i < word.length; i++) {
+    word[i] = letters;
+    return letters;
   }
+}
+
+function reset(){
+  word = ""
+  answerArray = [];
+  wrongGuess = "";
+  guessLeft = "";
+  letters = "";
+  completedWord.innerHTML = "";
+  start();
+}
+
+function setup(){
+  letters = word.length;
+  winNum.innerHTML = wins;
+  score.innerHTML = letters;
+  gletters.innerHTML = "";
+  gameDiv.innerHTML = answerArray.join('');
+}
+
   // pulling a random word from the array above
 
   // Giving a count ofthe word length to the user
@@ -64,69 +70,66 @@ function letterNum(){
 function start(){
   wordFinder();
   arrayDisplay();
-  letters = word.length;
-  wordLength();
-  winNum.innerHTML = wins;
-  score.innerHTML = letters;
-  gameDiv.innerHTML = answerArray.join('');
-  clear(),1;
-  return;
+  setup();
 }
 
 function win(){
-   clear(),1;
-   completedWord.innerHTML = word;
-   increment(), 1;
+   completedWord.innerHTML += word;
    winNum.innerHTML = wins;
    alert("Congratulations you win!");
-   start(),1;
+   reset();
 }
 
 function lose(){
-    winNum.innerHTML = wins;
-    clear();
     alert("you lose!");
-    start(),1;
+    reset();
 }
 
-  function clear() {
-    document.getElementById("scoreBox").innerHTML = "";
+function naw(){
+  guess.splice(playerGuess.indexOf(guess), 1);
+  gletters.innerHTML += " " + playerGuess;
+  wrong.innerHTML = wrongGuess;
+}
+
+function checker(playerKey){
+  wrongGuess++;
+  wrong.innerHTML = wrongGuess;
+  gletters.innerHTML += playerKey;
+  if (wrongGuess == 10) {
+    lose();
   }
+  else{
+    return playerKey;
+  }
+}
 
 // this should watch for key up from user and update each field depending on conditions
-    document.onkeyup = function(event){
+  document.onkeyup = function (event){
       var playerGuess = event.key;
-      let wrongGuess = "5";
-      if (playerGuess == gletters.html){
-        return;
-      }
-      for (var k = 0; k < guess.length; k++) {
-        if (guess[k] == playerGuess){
-          wrongGuess --;
-          guess.splice(playerGuess.indexOf(guess), 1);
-          gletters.innerHTML += " " + playerGuess;
-          wrong.innerHTML = wrongGuess;
-        }
-      }
       for (j = 0; j < word.length; j++){
-        if (word[j] === playerGuess){
+        if (word[j] !== playerGuess && wrongGuess > 1){
+          checker(playerGuess);
+          return;
+        }
+        else if (playerGuess == answerArray[j]) {
+          alert("you've guessed that already");
+          return;
+        }
+        if (word[j] == playerGuess){
           answerArray[j] = playerGuess;
           letters --;
           score.innerHTML = letters;
           gameDiv.innerHTML = answerArray.join('');
-          }
-          else if (letters === 0) {
-            clear();
-            win(),1;
-            return;
         }
-
+        else if (letters == 0){
+          wins++;
+          win();
         }
       }
+    }
 
 
-document.getElementById("reStart").onclick = start(),1;
-
+start();
 
 
 

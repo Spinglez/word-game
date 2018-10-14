@@ -13,19 +13,21 @@
 
     <header class="container header">
       <div class="row">
-        <h1 class="col">San Holo Word Game</h1>
+        <h1 class="col-6">San Holo Word Game</h1>
 
+        <div class="col-6">
         <nav class="nav">
           <a class="nav-link" href="#">San Holo's Webpage</a>
           <a class="nav-link" href="#">Bitbird Music</a>
           <a class="nav-link" href="#">Back to my stuff</a>
         </nav>
+        </div>
       </div>
     </header>
 
     <article class="mt-5 pb-4 container">
       <div class="row gameBox ">
-        <div class="col">
+        <div class="col-4">
         <h2>Lets play hangman, music style</h2>
           <button type="button" name="startbutton" class="btn btn-danger" id="reStart">re-start!</button>
         </div>
@@ -37,14 +39,11 @@
                 <div> Wins:
                 <span id="winNum"></span>
                 </div>
-                <div> Wrong guesses left:
+                <div> Wrong guesses:
                 <span id="wrong"></span>
                 </div>
                 <div>Letters left:
                 <span id="score"></span>
-                </div>
-                <div>Guesses left:
-                <span id="guesses"></span>
                 </div>
                 <div>Completed word:
                 <span id="completedWord"></span>
@@ -57,15 +56,17 @@
             </div>
 
           </div>
-          <div class="row" id="gameDiv">
+          <div class="row mt-4">
+            <div class="col" id="gameDiv">
 
+            </div>
           </div>
           <div>Guessed letters:
           <span id="gletters"></span>
           </div>
         </div>
 
-        <div class="col">
+        <div class="col-4">
           <p class="row instructions">
             <h3 class="text-center">Here are the rules!</h3>
 
